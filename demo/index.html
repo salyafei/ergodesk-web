@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ErgoDesk | Live demo</title>
+<meta name="description" content="Try ErgoDesk in your browser on an iPhone, iPad, Android phone or Android tablet frame.">
+<meta name="theme-color" content="#0C1F33">
+<link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
+<link rel="alternate icon" href="favicon.ico?v=2" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<script>
+/* Real phones skip the frames and open the app full screen, unless a device is asked for. */
+(function(){var q=new URLSearchParams(location.search);
+if(!q.get('device')&&matchMedia('(pointer:coarse)').matches&&Math.min(screen.width,screen.height)<600){
+  var p=q.get('page')||'/';if(!/^\/[A-Za-z0-9_\-\/?=&%.]*$/.test(p))p='/';var l=q.get('lang');
+  location.replace('app'+p+(l&&/^(en|ar|es|fr)$/.test(l)?(p.indexOf('?')<0?'?':'&')+'lang='+l:''));}})();
+</script>
+<style>
+:root{--bg:#0A1826;--bar:#0C1F33;--surface:#12293E;--ink:#E6EDF4;--soft:#9FB2C4;--line:#22384B;--accent:#7FB3D5;--frame:#050c13}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:-apple-system,"Segoe UI","Helvetica Neue",Roboto,Arial,sans-serif;overflow:hidden;display:flex;flex-direction:column}
+html[lang=ar] body,html[lang=ar] button,html[lang=ar] select{font-family:"Cairo","Geeza Pro","Noto Sans Arabic",Tahoma,sans-serif}
+.bar{display:flex;align-items:center;flex-wrap:wrap;gap:10px 14px;padding:10px 16px;background:var(--bar);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:9px;margin-inline-end:auto;white-space:nowrap;color:inherit;text-decoration:none}
+.brand b{font-size:19px;letter-spacing:-.2px}
+.brand span{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+html[lang=ar] .brand span{letter-spacing:0;font-size:13px}
+.seg{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface)}
+.seg button,.tool{font:inherit;font-size:13.5px;font-weight:600;color:var(--ink);background:transparent;border:0;padding:8px 13px;min-height:38px;cursor:pointer;white-space:nowrap}
+.seg button+button{border-inline-start:1px solid var(--line)}
+.seg button[aria-pressed=true]{background:var(--accent);color:#0C1F33}
+.seg button:hover:not([aria-pressed=true]),.tool:hover:not(:disabled){color:var(--accent)}
+.tool{border:1px solid var(--line);border-radius:10px;background:var(--surface);display:inline-flex;align-items:center;gap:7px}
+.tool:disabled{opacity:.4;cursor:default}
+.tool svg{width:16px;height:16px}
+select.tool{appearance:none;-webkit-appearance:none;padding-inline:12px 12px}
+select.tool option{background:var(--surface);color:var(--ink)}
+.size{font-size:12.5px;color:var(--soft);font-variant-numeric:tabular-nums;min-width:86px}
+:focus-visible{outline:2.5px solid var(--accent);outline-offset:2px}
+.stage{flex:1;position:relative;overflow:hidden;background-color:var(--bg);
+  background-image:radial-gradient(rgba(127,179,213,.10) 1px,transparent 1.2px);background-size:22px 22px}
+.device{position:absolute;left:50%;top:50%;transform-origin:center center;background:var(--frame);box-shadow:0 30px 70px -30px rgba(0,0,0,.75),0 0 0 1.5px rgba(127,179,213,.25) inset;transition:width .25s,height .25s}
+.device iframe{position:absolute;border:0;background:#0B0F14;display:block}
+.device .cam{position:absolute;background:#1f2a35;border-radius:99px}
+.device.full{box-shadow:none;background:transparent;transition:none}
+.device.full .cam{display:none}
+.note{position:absolute;inset-inline-start:16px;bottom:12px;font-size:12px;color:var(--soft);max-width:46ch;line-height:1.5}
+@media(max-width:1100px){.note{display:none}}
+@media(max-width:760px){.size{display:none}.seg button{padding:8px 9px;font-size:12.5px}.brand span{display:none}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <a class="brand" href="../" aria-label="ErgoDesk"><svg class="logo" width="28" height="28" aria-hidden="true" viewBox="160 158 704 704"><defs><linearGradient id="edm-lg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#AEE0C6"/><stop offset="1" stop-color="#76BD93"/></linearGradient><linearGradient id="edm-la" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#D9853A"/><stop offset="1" stop-color="#EBA14F"/></linearGradient><linearGradient id="edm-lga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E9B067"/><stop offset="1" stop-color="#B7B26E"/></linearGradient><linearGradient id="edm-lp" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2C9CD"/><stop offset="1" stop-color="#E2788A"/></linearGradient><linearGradient id="edm-lpa" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F9BBB0"/><stop offset="1" stop-color="#F2957C"/></linearGradient><clipPath id="edm-cg"><rect x="291" y="454" width="350" height="350" rx="64" transform="rotate(40 466 629)"/></clipPath><clipPath id="edm-ca"><rect x="317" y="306" width="350" height="350" rx="64" transform="rotate(-34 492 481)"/></clipPath></defs><rect x="291" y="454" width="350" height="350" rx="64" transform="rotate(40 466 629)" fill="url(#edm-lg)" fill-opacity="0.92" stroke="#FFFFFF" stroke-opacity="0.16" stroke-width="3"/><rect x="317" y="306" width="350" height="350" rx="64" transform="rotate(-34 492 481)" fill="url(#edm-la)" fill-opacity="0.9" stroke="#FFFFFF" stroke-opacity="0.16" stroke-width="3"/><g clip-path="url(#edm-cg)"><rect x="317" y="306" width="350" height="350" rx="64" transform="rotate(-34 492 481)" fill="url(#edm-lga)"/></g><rect x="397" y="206" width="350" height="350" rx="64" transform="rotate(-24 572 381)" fill="url(#edm-lp)" fill-opacity="0.88" stroke="#FFFFFF" stroke-opacity="0.16" stroke-width="3"/><g clip-path="url(#edm-ca)"><rect x="397" y="206" width="350" height="350" rx="64" transform="rotate(-24 572 381)" fill="url(#edm-lpa)" fill-opacity="0.95"/></g></svg><b>ErgoDesk</b><span data-t="live">Live demo</span></a>
+  <div class="seg" role="group" aria-label="Device" id="devices">
+    <button type="button" data-device="iphone" data-t="iphone">iPhone</button>
+    <button type="button" data-device="ipad" data-t="ipad">iPad</button>
+    <button type="button" data-device="android" data-t="android">Android phone</button>
+    <button type="button" data-device="tablet" data-t="tablet">Android tablet</button>
+    <button type="button" data-device="full" data-t="full">Full screen</button>
+  </div>
+  <button type="button" class="tool" id="rotate" aria-label="Rotate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="3" width="10" height="16" rx="2"/><path d="M20 15a8 8 0 0 1-6 6.5M14 21.5l1.5-2.5M14 21.5l2.8.6"/></svg><span id="rotlabel" data-t="landscape">Landscape</span></button>
+  <span class="size" id="size" aria-live="polite"></span>
+  <select class="tool" id="lang" aria-label="Language">
+    <option value="en" lang="en">English</option>
+    <option value="ar" lang="ar">العربية</option>
+    <option value="es" lang="es">Español</option>
+    <option value="fr" lang="fr">Français</option>
+  </select>
+</header>
+<main class="stage" id="stage">
+  <div class="device" id="device"><span class="cam" id="cam"></span><iframe id="app" title="ErgoDesk app"></iframe></div>
+  <p class="note" data-t="note">The app runs at the real screen size of each device and is scaled to fit your window. Browsers can't do AR, so the demo shows a sample desk: tap its front edge to place the zones. Nothing leaves your browser.</p>
+</main>
+<script>
+(function(){
+var DEV={
+  iphone:{w:430,h:932,b:14,r:58,cam:'pill'},
+  ipad:{w:1032,h:1376,b:24,r:38,cam:'dot'},
+  android:{w:412,h:915,b:11,r:34,cam:'hole'},
+  tablet:{w:800,h:1280,b:22,r:26,cam:'dot'}
+};
+var T={
+ en:{live:'Live demo',iphone:'iPhone',ipad:'iPad',android:'Android phone',tablet:'Android tablet',full:'Full screen',landscape:'Landscape',portrait:'Portrait',rotate:'Rotate',device:'Device',language:'Language',scale:'shown at',
+     note:"The app runs at the real screen size of each device and is scaled to fit your window. Browsers can't do AR, so the demo shows a sample desk: tap its front edge to place the zones. Nothing leaves your browser."},
+ ar:{live:'عرض تجريبي',iphone:'آيفون',ipad:'آيباد',android:'هاتف أندرويد',tablet:'جهاز أندرويد لوحي',full:'ملء الشاشة',landscape:'أفقي',portrait:'عمودي',rotate:'تدوير',device:'الجهاز',language:'اللغة',scale:'بنسبة',
+     note:'يعمل التطبيق بالمقاس الحقيقي لشاشة كل جهاز ويُصغَّر ليناسب نافذتك. لا يدعم المتصفح الواقع المعزز، لذا يعرض العرض التجريبي مكتبًا نموذجيًا: اضغط على حافته الأمامية لوضع المناطق. لا يغادر أي شيء متصفحك.'},
+ es:{live:'Demo en vivo',iphone:'iPhone',ipad:'iPad',android:'Teléfono Android',tablet:'Tableta Android',full:'Pantalla completa',landscape:'Horizontal',portrait:'Vertical',rotate:'Girar',device:'Dispositivo',language:'Idioma',scale:'al',
+     note:'La app se ejecuta al tamaño real de pantalla de cada dispositivo y se escala para caber en tu ventana. Los navegadores no admiten RA, así que la demo muestra un escritorio de ejemplo: toca su borde frontal para colocar las zonas. Nada sale de tu navegador.'},
+ fr:{live:'Démo en direct',iphone:'iPhone',ipad:'iPad',android:'Téléphone Android',tablet:'Tablette Android',full:'Plein écran',landscape:'Paysage',portrait:'Portrait',rotate:'Pivoter',device:'Appareil',language:'Langue',scale:'affiché à',
+     note:"L'app s'affiche à la taille d'écran réelle de chaque appareil, réduite pour tenir dans votre fenêtre. Les navigateurs ne gèrent pas la RA : la démo montre donc un bureau d'exemple. Touchez son bord avant pour placer les zones. Rien ne quitte votre navigateur."}};
+var LANGS=['en','ar','es','fr'];
+var q=new URLSearchParams(location.search);
+var coarse=matchMedia('(pointer:coarse)').matches;
+var qd=q.get('device');var device=(DEV[qd]||qd==='full')?qd:(coarse?'full':'iphone');
+var orient=q.get('orient')==='landscape'?'landscape':'portrait';
+function saved(){try{var v=localStorage.getItem('ergodesk.lang.v1');if(v){v=v.replace(/"/g,'');if(LANGS.indexOf(v)>=0)return v;}}catch(e){}
+  var n=(navigator.language||'en').slice(0,2).toLowerCase();return LANGS.indexOf(n)>=0?n:'en';}
+var lang=LANGS.indexOf(q.get('lang'))>=0?q.get('lang'):saved();
+var page=q.get('page')||'/';if(!/^\/[A-Za-z0-9_\-\/?=&%.]*$/.test(page))page='/';
+page=page.replace(/([?&])lang=[a-z]*&?/,'$1').replace(/[?&]$/,'');
+var el=document.getElementById('device'),fr=document.getElementById('app'),cam=document.getElementById('cam'),stage=document.getElementById('stage'),sel=document.getElementById('lang');
+fr.src='app'+page+(page.indexOf('?')<0?'?':'&')+'lang='+lang;
+function t(k){return T[lang][k]}
+function applyLang(){var h=document.documentElement;h.lang=lang;h.dir=lang==='ar'?'rtl':'ltr';
+  document.querySelectorAll('[data-t]').forEach(function(n){n.textContent=t(n.getAttribute('data-t'))});
+  sel.value=lang;sel.setAttribute('aria-label',t('language'));document.getElementById('devices').setAttribute('aria-label',t('device'));
+  document.getElementById('rotate').setAttribute('aria-label',t('rotate'));layout();}
+function layout(){
+  var full=device==='full',rot=document.getElementById('rotate');
+  rot.disabled=full;document.getElementById('rotlabel').textContent=t(orient==='landscape'?'portrait':'landscape');
+  document.querySelectorAll('#devices button').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-device')===device?'true':'false')});
+  var sw=stage.clientWidth,sh=stage.clientHeight;
+  if(full){el.className='device full';el.style.cssText='left:0;top:0;width:'+sw+'px;height:'+sh+'px;transform:none;border-radius:0';
+    fr.style.cssText='left:0;top:0;width:'+sw+'px;height:'+sh+'px;border-radius:0';document.getElementById('size').textContent='\u2066'+sw+' x '+sh+'\u2069';noteFit();return;}
+  var d=DEV[device],land=orient==='landscape',w=land?d.h:d.w,h=land?d.w:d.h,b=d.b,W=w+2*b,H=h+2*b;
+  var pad=sw<760?16:40,s=Math.min(1,(sw-pad*2)/W,(sh-pad*2)/H);
+  /* physical left/top: the frame is centred the same way in LTR and RTL */
+  el.className='device';el.style.cssText='left:50%;top:50%;width:'+W+'px;height:'+H+'px;border-radius:'+d.r+'px;transform:translate(-50%,-50%) scale('+s+')';
+  fr.style.cssText='left:'+b+'px;top:'+b+'px;width:'+w+'px;height:'+h+'px;border-radius:'+Math.max(6,d.r-b)+'px';
+  var c=d.cam==='pill'?{l:64,s:6}:{l:7,s:7};
+  if(!land)cam.style.cssText='left:'+(W-c.l)/2+'px;top:'+(b-c.s)/2+'px;width:'+c.l+'px;height:'+c.s+'px';
+  else cam.style.cssText='top:'+(H-c.l)/2+'px;left:'+(b-c.s)/2+'px;height:'+c.l+'px;width:'+c.s+'px';
+  document.getElementById('size').textContent='\u2066'+w+' x '+h+'\u2069 \u00b7 '+t('scale')+' \u2066'+Math.round(s*100)+'%\u2069';
+  noteFit();setTimeout(noteFit,320);
+}
+/* Hide the corner note whenever the scaled frame would sit on top of it. */
+function noteFit(){var n=document.querySelector('.note');if(!n)return;n.style.visibility='';var a=n.getBoundingClientRect(),b=el.getBoundingClientRect();
+  if(a.width&&!(a.right<b.left||a.left>b.right||a.bottom<b.top||a.top>b.bottom))n.style.visibility='hidden';}
+function sync(){var u=new URLSearchParams(location.search);u.set('device',device);if(device!=='full'&&orient==='landscape')u.set('orient','landscape');else u.delete('orient');
+  if(lang!=='en')u.set('lang',lang);else u.delete('lang');u.delete('page');
+  history.replaceState(null,'',location.pathname+'?'+u.toString());}
+document.querySelectorAll('#devices button').forEach(function(b){b.addEventListener('click',function(){device=b.getAttribute('data-device');layout();sync();})});
+document.getElementById('rotate').addEventListener('click',function(){orient=orient==='landscape'?'portrait':'landscape';layout();sync();});
+/* Language: tell the running app (keeps its state) and follow the app if its own language button is used. */
+sel.addEventListener('change',function(){lang=sel.value;try{fr.contentWindow.postMessage({type:'ergodesk:lang',lang:lang},location.origin)}catch(e){}applyLang();sync();});
+var mo;fr.addEventListener('load',function(){try{if(mo)mo.disconnect();var de=fr.contentDocument.documentElement;
+  mo=new MutationObserver(function(){var l=(de.getAttribute('lang')||'').slice(0,2);if(LANGS.indexOf(l)>=0&&l!==lang){lang=l;applyLang();sync();}});
+  mo.observe(de,{attributes:true,attributeFilter:['lang']});}catch(e){}});
+addEventListener('resize',layout);
+applyLang();
+})();
+</script>
+</body>
+</html>
